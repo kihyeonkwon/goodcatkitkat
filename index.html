@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>Good cat is a kit-kat</h1>
+        <p><button class="btn btn-danger" @click="getImage">this cat sux</button></p>
+        <p><button class="btn btn-success" @click="answer" id='goodcat' disabled>this is a good cat</button></p>
+        <p>Your score : {{correct}}</p>
+        <p>Max score : {{max_score}} </p>
+        <img :src="cat_url" alt="myimage" width="80%">
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var number = 1
+        const app = new Vue({
+            el: '#app',
+            data: {
+                cat_url: 'https://i.pinimg.com/564x/4b/6f/ec/4b6fec352ad65acf6c1265201432dfa1.jpg',
+                correct: 0,
+                max_score: 0
+            },
+            methods: {
+                getImage: function () {
+                    axios.get('https://api.thecatapi.com/v1/images/search')
+                        .then(res => {
+                            if (number === 5) {
+                                alert("no you suck")
+                                this.correct = 0
+                            }
+                            this.correct += 1
+                            if (this.correct > this.max_score) {
+                                this.max_score = this.correct
+                            }
+                            const new_url = res.data[0].url
+                            const kitkat_url = 'https://www.candywarehouse.com/item-images/127372-01_kit-kat-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000'
+                            number = _.random(5)
+                            const good = document.querySelector('#goodcat')
+                            console.log(number)
+                            if (number === 5) {
+                                this.cat_url = kitkat_url
+                                good.disabled = false
+
+                            } else {
+                                this.cat_url = new_url
+                                good.disabled = true
+
+                            }
+                        })
+                },
+                answer: function () {
+                    alert("that's right")
+                    this.correct += 10
+                    if (this.correct > this.max_score) {
+                        this.max_score = this.correct
+                    }
+                    axios.get('https://api.thecatapi.com/v1/images/search')
+                        .then(res => {
+                            const new_url = res.data[0].url
+                            const kitkat_url = 'https://www.candywarehouse.com/item-images/127372-01_kit-kat-candy-bars-36-piece-box.jpg?resizeid=104&resizeh=1000&resizew=1000'
+                            number = _.random(6)
+                            const good = document.querySelector('#goodcat')
+                            console.log(number)
+                            if (number === 5) {
+                                this.cat_url = kitkat_url
+                                good.disabled = false
+
+                            } else {
+                                this.cat_url = new_url
+                                good.disabled = true
+
+                            }
+                        })
+                }
+
+            }
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+<!--                      -->
