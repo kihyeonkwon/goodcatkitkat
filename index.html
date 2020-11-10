@@ -16,17 +16,17 @@
 
         <p>Your score : {{correct}}</p>
         <p>Max score : {{max_score}} </p>
-        <div class="mx-auto row">
-            <div class="col"><button class="btn btn-danger" @click="getImage">this cat sux</button></div>
-            <div class="col"><button class="btn btn-success" @click="answer" id='goodcat' disabled>this is a good
-                    cat</button></div>
-        </div>
+
         <div class='mx-auto mt-5'>
             <img :src="cat_url" alt="myimage" height="300px" object-fit="cover" class="mx-auto">
         </div>
 
 
-
+        <div class="mx-auto row">
+            <div class="col"><button class="btn btn-danger" @click="getImage">this cat sux</button></div>
+            <div class="col"><button class="btn btn-success" @click="answer" id='goodcat' disabled>this is a good
+                    cat</button></div>
+        </div>
 
 
 
