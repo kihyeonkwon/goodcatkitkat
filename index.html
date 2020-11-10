@@ -11,13 +11,23 @@
 </head>
 
 <body>
-    <div class="container" id="app">
+    <div class="container d-flex flex-column" id="app">
         <h1>Good cat is a kit-kat</h1>
-        <p><button class="btn btn-danger" @click="getImage">this cat sux</button></p>
-        <p><button class="btn btn-success" @click="answer" id='goodcat' disabled>this is a good cat</button></p>
+
         <p>Your score : {{correct}}</p>
         <p>Max score : {{max_score}} </p>
-        <img :src="cat_url" alt="myimage" width="80%">
+        <div class="mx-auto row">
+            <div class="col"><button class="btn btn-danger" @click="getImage">this cat sux</button></div>
+            <div class="col"><button class="btn btn-success" @click="answer" id='goodcat' disabled>this is a good
+                    cat</button></div>
+        </div>
+        <div class='mx-auto mt-5'>
+            <img :src="cat_url" alt="myimage" height="300px" object-fit="cover" class="mx-auto">
+        </div>
+
+
+
+
 
 
 
